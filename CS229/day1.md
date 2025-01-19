@@ -51,9 +51,11 @@ $$
 $$
 
 将上述结果带入到梯度下降的更新公式中，对所有参数 $\theta_j$ $(j = 0, 1, \ldots, n)$进行更新：
-$ \theta_j := \theta_j - \alpha \sum_{i=1}^{m} \left( h_\theta(x^{(i)}) - y^{(i)} \right) x_j^{(i)} $
+$$
+\theta_j := \theta_j - \alpha \sum_{i=1}^{m} \left( h_\theta(x^{(i)}) - y^{(i)} \right) x_j^{(i)} 
+$$
 
-通过不断迭代这个更新过程，我们能够使成本函数 $J(\theta) $ 降低，从而找到使 $J(\theta)$ 最小的参数向量$\theta$
+通过不断迭代这个更新过程，我们能够使成本函数 $J(\theta)$ 降低，从而找到使 $J(\theta)$ 最小的参数向量$\theta$
 
 
 
