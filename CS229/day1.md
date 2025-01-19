@@ -61,3 +61,41 @@ $$
 
 
 >*数学相关的知识已经遗忘干净，暂时先不过多追究了，有时间再多花时间处理处理推导推导*
+
+## 一些相关的计算
+在运算过程中 我们使用了矩阵运算，也就是说，在使用链式求导法则之外，也可以使用矩阵运算得到我们需要的值
+
+其中 
+- 假设函数$h_{\theta}(X)=X  \theta$
+- 成本函数 $J(\theta)=\frac{1}{2m}(X\theta-y)^T(X\theta-y)$
+- 梯度向量 $\nabla_{\theta}J(\theta)=\frac{1}{m}X^T(X\theta-y)$
+
+从而 **梯度下降更新的规则如下**
+$$
+\theta=\theta-\alpha\nabla_{\theta}J(\theta)
+$$
+
+### 梯度计算的推导
+我们需要对成本函数$J(\theta)$关于$\theta$进行求导。为了简化推导过程，我们先展开成本函数
+$$
+J(\theta)=\frac{1}{2m}(X\theta-y)^T(X\theta-y)
+$$
+展开后得到
+$$
+J(\theta)=\frac{1}{2m}(\theta^TX^TX\theta-2\theta^TX^Ty+y^Ty)
+$$
+我们对于$\theta$进行求导，不难发现，$y^Ty$是一个常数项，所以可以忽略
+
+1. 对于$\theta^TX^TX\theta$，使用矩阵求导法则
+$$
+\frac{\partial}{\partial\theta}(\theta^TX^TX\theta)=2X^TX\theta
+$$
+2. 对于$2\theta^TX^Ty$
+$$
+\frac{\partial}{\partial\theta}(2\theta^TX^Ty)=-2X^Ty
+$$
+
+将以上的结果带入梯度公式,最终可以得到
+$$
+\nabla_{\theta}J(\theta)=\frac{1}{m}X^T(X\theta-y)
+$$
