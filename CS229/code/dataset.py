@@ -1,5 +1,6 @@
 #创建一个线性数据集 服从函数：y=3x+4
 import numpy as np
+import os
 import matplotlib.pyplot as plt
 
 #数据集的样本数
@@ -16,6 +17,6 @@ plt.plot(X, Y_true, color='red')
 plt.show()
 
 #保存数据集为txt格式
-np.savetxt('X.txt', X)
-np.savetxt('Y.txt', Y)
-np.savetxt('Y_true.txt', Y_true)
+np.savetxt(os.path.join(os.path.dirname(__file__), 'X.txt'), X)
+np.savetxt(os.path.join(os.path.dirname(__file__), 'Y.txt'), Y)
+np.savetxt(os.path.join(os.path.dirname(__file__), 'Y_true.txt'), Y_true)
