@@ -16,19 +16,26 @@ def validate_regex(regex):
     
     for i, char in enumerate(regex):
         if char == '(':
-            stack.append(i)  # 记录左括号的位置
+            stack.append(('(', i))  # 记录左括号的类型和位置
         elif char == ')':
-            if not stack:  # 没有匹配的左括号
+            if not stack or stack[-1][0] != '(':  # 没有匹配的左括号
                 return i  # 返回错误位置
             stack.pop()  # 弹出匹配的左括号
+        elif char == '[':
+            stack.append(('[', i))  # 记录左中括号的类型和位置
+        elif char == ']':
+            if not stack or stack[-1][0] != '[':  # 没有匹配的左中括号
+                return i  # 返回错误位置
+            stack.pop()  # 弹出匹配的左中括号
         elif char == '*':
             # * 必须跟在字符或右括号后面
             if i == 0 or regex[i-1] in '(|':
                 return i  # 返回错误位置
-        elif char == '+':
+        # 此处正闭包与加号冲突 暂时保留 不处理 也就是 在该语法中 正闭包不合法 需要单独表示为a|a*
+        #elif char == '+':
             # + 必须跟在字符或右括号后面
-            if i == 0 or regex[i-1] in '(|':
-                return i  # 返回错误位置
+        #       if i == 0 or regex[i-1] in '(|':
+              #  return i  # 返回错误位置
         elif char == '?':
             # ? 必须跟在字符或右括号后面
             if i == 0 or regex[i-1] in '(|':
